@@ -2,13 +2,12 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {% assets filters="pyscss,cssmin", output="css/style.min.css", "style.scss" %}
+        <link rel="stylesheet" href="/{{ ASSET_URL }}">
+        {% endassets %}
         <title>{% block title %}{% endblock%}</title>
     </head>
-{% assets filters="pyscss,cssmin", output="css/style.min.css", "style.scss" %}
-    <link rel="stylesheet" href="/{{ ASSET_URL }}">
-{% endassets %}
     <body>
         <div id="inner-body">
             <header>
