@@ -18,3 +18,6 @@ LINKS = None
 SOCIAL = None
 
 DEFAULT_PAGINATION = False
+
+PLUGIN_PATHS = ["pelican-plugins"]
+PLUGINS = ["assets"]

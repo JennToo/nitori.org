@@ -1,0 +1,29 @@
+body {
+    font: 10pt monospace;
+    display: flex;
+    justify-content: center;
+}
+
+#inner-body {
+    max-width: 100em;
+    width: 100%;
+}
+
+header {
+    border-bottom-width: 0.1em;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-left-width: 0;
+    border-style: dotted;
+
+    padding-bottom: 0.5em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+nav {
+    display: inline;
+}
