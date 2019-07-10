@@ -35,3 +35,19 @@ main {
     padding-right: 1em;
     text-align: justify;
 }
+
+.figures {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.figure {
+    border-style: dotted;
+    border-width: 0.1em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-top: 0.75em;
+    padding-bottom: 0;
+    text-align: left;
+}
