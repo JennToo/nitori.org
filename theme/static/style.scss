@@ -1,11 +1,13 @@
+$font-family: sans-serif;
+
 body {
-    font: 10pt monospace;
+    font: 10pt $font-family;
     display: flex;
     justify-content: center;
 }
 
 #inner-body {
-    max-width: 100em;
+    max-width: 75em;
     width: 100%;
 }
 
@@ -26,4 +28,9 @@ header {
 
 nav {
     display: inline;
+}
+
+main {
+    padding-left: 1em;
+    padding-right: 1em;
 }
