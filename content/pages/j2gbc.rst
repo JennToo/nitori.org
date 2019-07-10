@@ -25,4 +25,10 @@ In hac habitasse platea dictumst. Nullam varius non nisi ut aliquet. Nam laoreet
 
 Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin et molestie odio. Integer at nisl a mi efficitur bibendum nec a quam. Proin elementum dui id lorem consectetur condimentum. Cras pulvinar mollis libero, sit amet congue felis vulputate et. Mauris elementum auctor elementum. Morbi dignissim odio ut turpis ornare, ut sollicitudin arcu ullamcorper. Curabitur posuere ultrices ante, non pharetra lectus pharetra at.
 
+.. code-block:: python
+   :linenos:
+
+   def hello_there(arg):
+       print("General Kenobi!")
+
 Donec dui ante, tempor finibus purus non, lobortis scelerisque ante. Maecenas sed congue elit, id pharetra augue. Mauris non eros velit. In bibendum convallis purus et euismod. Integer feugiat dui ac dignissim vestibulum. Morbi ornare aliquam metus, at vestibulum augue finibus nec. Nullam egestas vel felis at tempor. Integer sed efficitur magna. 
