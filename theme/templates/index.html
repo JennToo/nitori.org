@@ -1,3 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}nitori.org{% endblock%}
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+<h1>Articles</h1>
+
+<table class="article-summary-table">
+{% for article in articles_page.object_list %}
+<tr>
+<td>
+    <time>{{ article.date.strftime("%Y-%m-%d") }}</time>
+</td>
+<td class="article-summary-block">
+    <p>
+        <a href="{{ article.url }}">{{ article.title }}</a> - 
+    </p>
+    {{ article.summary }}
+</td>
+</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

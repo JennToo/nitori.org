@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+<p class="article-byline">
+    <time>{{ article.date.strftime("%Y-%m-%d") }}</time>
+    <br />
+    <span class="author">By {{ article.author }}</span>
+</p>
+<h1>{{ article.title }}</h1>
+
+{{ article.content }}
+{% endblock %}

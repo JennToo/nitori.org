@@ -30,10 +30,34 @@ nav {
     display: inline;
 }
 
+nav a {
+    padding-left: 0.5em;
+}
+
 main {
     padding-left: 1em;
     padding-right: 1em;
     text-align: justify;
+}
+
+.article-summary-block p {
+    display: inline;
+}
+
+.article-summary-table time {
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.article-byline {
+    text-align: right;
+    float: right;
+}
+
+.article-byline time {
+}
+.article-byline .author {
+    font-style: italic;
 }
 
 .figures {

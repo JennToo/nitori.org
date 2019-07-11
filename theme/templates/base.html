@@ -6,16 +6,15 @@
         {% assets filters="pyscss,cssmin", output="css/style.min.css", "style.scss" %}
         <link rel="stylesheet" href="/{{ ASSET_URL }}">
         {% endassets %}
-        <title>{% block title %}{% endblock%}</title>
+        <title>nitori.org :: {% block title %}{% endblock%}</title>
     </head>
     <body>
         <div id="inner-body">
             <header>
                 <a href="/">nitori.org</a>
                 <nav>
-                    <a href="/">Link 1</a>
-                    <a href="/">Link 2</a>
-                    <a href="/">Link 3</a>
+                    <a href="/">Articles</a>
+                    <a href="/pages/projects.html">Projects</a>
                 </nav>
             </header>
 

@@ -1,11 +1,7 @@
-j2gbc - A Game Boy Color Emulator
-#################################
+j2gbc
+#####
 
 :slug: j2gbc
-:date: 2010-12-03 10:20
-
-j2gbc
------
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla consequat nibh lacinia, molestie bibendum ligula elementum. Nullam enim enim, egestas eu porta vitae, consequat eget magna. Suspendisse eu nisl mattis, efficitur lacus vel, gravida risus. Nullam euismod lorem nec molestie dignissim. Praesent scelerisque nunc id augue hendrerit, non placerat augue condimentum. Maecenas quis aliquam elit, vitae sagittis tellus. Etiam id nisl ut mi ullamcorper ultrices. Sed purus ipsum, mollis quis nulla placerat, sagittis facilisis ipsum. In ornare venenatis turpis vitae scelerisque. Vivamus porta turpis et enim faucibus vulputate.
 
