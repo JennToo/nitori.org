@@ -1,13 +1,13 @@
 $font-family: sans-serif;
 
 body {
-    font: 10pt $font-family;
+    font: 12pt $font-family;
     display: flex;
     justify-content: center;
 }
 
 #inner-body {
-    max-width: 75em;
+    max-width: 60em;
     width: 100%;
 }
 
@@ -37,7 +37,6 @@ nav a {
 main {
     padding-left: 1em;
     padding-right: 1em;
-    text-align: justify;
 }
 
 .article-summary-block p {
@@ -52,12 +51,16 @@ main {
 .article-byline {
     text-align: right;
     float: right;
+    margin-top: 0;
 }
 
-.article-byline time {
-}
 .article-byline .author {
     font-style: italic;
+}
+
+tt {
+    background-color: #eee;
+    hyphens: none;
 }
 
 .figures {
