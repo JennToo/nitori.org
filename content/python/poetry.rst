@@ -1,7 +1,7 @@
 I ❤️ poetry
 ###########
 
-:date: 2019-7-10
+:date: 2019-7-11
 :summary: And I don't mean the kind from English class
 :tags: python, poetry
 
@@ -19,12 +19,12 @@ Imagine you're pulling down an open-source Python repository that you want to
 play with. How will you setup the development environment? The process
 will often take one of these forms:
 
- - If there is a ``Makefile`` for managing the environment, use it
- - If there is a ``requirements.txt`` (or similar) file, create a new ``virtualenv``
-   and ``pip install -r`` the requirements. Let's hope the compatible versions
-   are well specified.
- - Maybe the requirements are just in ``setup.py``, and we can install those in
-   a ``virtualenv``. Who knows how we get the test dependencies.
+- If there is a ``Makefile`` for managing the environment, use it
+- If there is a ``requirements.txt`` (or similar) file, create a new
+  ``virtualenv`` and ``pip install -r`` the requirements. Let's hope the
+  compatible versions are well specified.
+- Maybe the requirements are just in ``setup.py``, and we can install those in
+  a ``virtualenv``. Who knows how we get the test dependencies.
 
 So somehow you've managed to setup an environment with the dependent packages.
 Feeling accomplished you run the tests, and watch as they explode in a
@@ -42,10 +42,10 @@ What is all this junk?
 Look at your average Python package repo and what kinds of files do you see?
 There's the source code and tests, sure. But you've also got the likes of:
 
- - ``setup.py`` for making the package installable
- - ``MANIFEST.in`` for including extra files in the package
- - ``requirements.txt``, ``test-requirements.txt``, etc. for specifying
-   dependencies
+- ``setup.py`` for making the package installable
+- ``MANIFEST.in`` for including extra files in the package
+- ``requirements.txt``, ``test-requirements.txt``, etc. for specifying
+  dependencies
 
 Maintaining these files is annoying. They each have their own syntax and
 quirks, and they polute the repository with files that aren't really
