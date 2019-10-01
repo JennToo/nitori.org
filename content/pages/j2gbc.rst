@@ -3,28 +3,90 @@ j2gbc
 
 :slug: j2gbc
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla consequat nibh lacinia, molestie bibendum ligula elementum. Nullam enim enim, egestas eu porta vitae, consequat eget magna. Suspendisse eu nisl mattis, efficitur lacus vel, gravida risus. Nullam euismod lorem nec molestie dignissim. Praesent scelerisque nunc id augue hendrerit, non placerat augue condimentum. Maecenas quis aliquam elit, vitae sagittis tellus. Etiam id nisl ut mi ullamcorper ultrices. Sed purus ipsum, mollis quis nulla placerat, sagittis facilisis ipsum. In ornare venenatis turpis vitae scelerisque. Vivamus porta turpis et enim faucibus vulputate.
+j2gbc is a Game Boy and Game Boy Color emulator.
 
-Nullam fermentum mauris et rhoncus volutpat. Praesent non purus sit amet neque gravida commodo in vitae ipsum. Fusce sodales placerat elementum. In at augue at eros viverra pretium. Proin congue pretium nisl, ac imperdiet nibh luctus lacinia. Praesent viverra porta odio. Integer venenatis ullamcorper rutrum. Cras at ligula quis elit ullamcorper egestas. In gravida pretium lorem, at blandit erat ornare quis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tincidunt suscipit elementum. Quisque non tortor in elit mattis sollicitudin tristique ac dui. Fusce dignissim massa at tincidunt rutrum.
+My motivation for writing it was twofold.
 
-In hac habitasse platea dictumst. Nullam varius non nisi ut aliquet. Nam laoreet id augue eget congue. In maximus erat ac turpis efficitur, non volutpat lacus feugiat. Quisque fringilla nec leo vel gravida. Duis a risus risus. Cras bibendum malesuada mauris, sit amet semper diam finibus vitae. Suspendisse volutpat ex ut aliquam cursus. Aliquam sagittis scelerisque iaculis. Nam placerat elit nec elementum vestibulum. Maecenas mi metus, tempor sed ipsum eget, dictum vestibulum massa.
+First, I wanted to try out Rust on a full-sized project. I had used it on a few
+toy projects before but I wanted to try something of a larger scope to see how
+the language plays out at a larger scale (spoiler alert: Rust is pretty good at
+this!).
 
-.. container:: figures
+My other motivation was to find a side project that I would actually make
+decent progress on. And as it turns out, writing an emulator for an old game
+system like the Game Boy is perfect for this! There's always something I can
+tinker on, even for 15 minutes, and see real forward progress on the overall
+project. This helps maintain momentum, even on the "hard parts" of the project.
 
-    .. figure:: {static}/images/figure1.jpg
-       :target: {static}/images/figure1.jpg
-       :alt: This is a figure
-       :width: 100%
-       :figwidth: 25%
+The Game Boy (and really most game consoles from before the N64 / PS1 period)
+are fun systems to work with, since the mental model for the entire system can
+fit into one developer's head. If you want to, you can know in exact detail how
+pretty much any part of the system functions! Which is a far cry from today's
+computing platforms.
 
-       This is a small summary of the figure
+Screenshots
+===========
 
-Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin et molestie odio. Integer at nisl a mi efficitur bibendum nec a quam. Proin elementum dui id lorem consectetur condimentum. Cras pulvinar mollis libero, sit amet congue felis vulputate et. Mauris elementum auctor elementum. Morbi dignissim odio ut turpis ornare, ut sollicitudin arcu ullamcorper. Curabitur posuere ultrices ante, non pharetra lectus pharetra at.
+These screenshots were produced with legally obtained ROMs! I actually have the
+cartridges for them, and a little $30 peripheral that can dump those cartridges
+into usable ROMs.
 
-.. code-block:: python
-   :linenos:
+In my not-legally-trained opinion, reproducing these screenshots to demonstrate
+the functionality of this emulator falls under fair use. The presence of these
+screenshots does not represent any endorsement or even permission from the
+respective copyright holders.
 
-   def hello_there(arg):
-       print("General Kenobi!")
+TODO: Add some screenshots
 
-Donec dui ante, tempor finibus purus non, lobortis scelerisque ante. Maecenas sed congue elit, id pharetra augue. Mauris non eros velit. In bibendum convallis purus et euismod. Integer feugiat dui ac dignissim vestibulum. Morbi ornare aliquam metus, at vestibulum augue finibus nec. Nullam egestas vel felis at tempor. Integer sed efficitur magna. 
+Functionality Overview
+======================
+
+Graphics:
+ - Things mostly work here, both DMG and CGB. I stumble onto visual glitches
+   every once in a while but they're usually easy to fix.
+ - The biggest missing piece for graphics is that the timing of certain "video
+   states" isn't emulated cycle-accurately. Because this timing can vary with
+   the number of sprites visible on a specific scanline, it can be a little
+   tough to emulate this properly.
+
+Audio:
+ - This is mostly functional, but it still has a lot of glitches.
+ - I think I need to fundamentally re-think the audio stack to fix several of
+   the timing issues.
+ - I've never worked with computer audio before this project so this part was
+   definitely a big learning experience!
+
+System (CPU and peripherals):
+ - CPU instructions are all implemented and function correctly. There's a great
+   set of test ROMs developed by the GB community that help verify this.
+ - Cycle accuracy is lacking on a variety of things. E.g. DMAs are all
+   essentially instant right now, which is definitely inaccurate.
+ - The link cable and IR system (CGB only) are not implemented, but this would
+   be really cool for the future! I'd like to get it running over the internet
+   so you could play multiplayer games remotely.
+
+Debugger:
+ - This is very much a work-in-progress. Right now you can get disassembly
+   around the current PC, and do single steps. Breakpoints are supported by the
+   CPU core but I need to hook them back up to the GUI.
+ - There is a built-in MMU-like process in the CPU core. This will trigger a
+   breakpoint when a ROM does something fishy (like e.g. jumping into the ROM
+   header, or reading from a memory-mapped register that is write-only).
+   There's a table with exceptions for known bugs in ROMs (e.g. Tetris does a
+   lot of bad things).
+ - That MMU protection was very useful early on when diagnosing CPU bugs that
+   would cause the program execution to spiral out of control. It would also be
+   useful for developing new ROMs.
+
+Lessons Learned
+===============
+
+Having a project with quick positive feedback makes it much more appealing to
+work on that project
+
+Write real automated tests, even when you're just doing something for fun! This
+was honestly the biggest mistake I made in this project. I was essentially
+manually testing things while I was writing the original core system. Which
+means I've also seen all the possible horribly corrupted variations of the
+intro to Link's Awakening DX 😂 But now I have a pretty big backlog of
+technical debt for the project.
