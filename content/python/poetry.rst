@@ -1,7 +1,7 @@
 I ❤️ poetry
 ###########
 
-:date: 2019-7-11
+:date: 2019-9-30
 :summary: And I don't mean the kind from English class
 :tags: python, poetry
 
@@ -28,7 +28,7 @@ will often take one of these forms:
 
 So somehow you've managed to setup an environment with the dependent packages.
 Feeling accomplished you run the tests, and watch as they explode in a
-cacophany of failures.
+cacophony of failures.
 
 It turns out that, compared to the last CI run for the package, you have a
 slightly different version of some deep transitive dependency. And that change
@@ -48,7 +48,7 @@ There's the source code and tests, sure. But you've also got the likes of:
   dependencies
 
 Maintaining these files is annoying. They each have their own syntax and
-quirks, and they polute the repository with files that aren't really
+quirks, and they pollute the repository with files that aren't really
 "essential" to the package.
 
 poetry to the rescue!
@@ -60,7 +60,7 @@ others). There are two core files present in any poetry-based Python project:
 - ``pyproject.toml``, which contains most of the information about a package
   such as its name, version, description, and dependencies.
 - ``poetry.lock``, which contains specific versions of the dependencies
-  (transitively) used whne running tests and other commands.
+  (transitively) used when running tests and other commands.
 
 Here's an example ``pyproject.toml`` file for a simple Python package:
 
@@ -93,7 +93,7 @@ This file alone replaces ``setup.py``, ``MANIFEST.in``, ``requirements.txt``,
 ``test-requirements.txt`` and more!
 
 We've also specified our package's dependencies and dev-dependencies using the
-common sem-ver specifiers. Whenever we run ``poetry update`` it will take these
+common semver specifiers. Whenever we run ``poetry update`` it will take these
 dependencies and attempt to resolve a set of packages that satisfy them. This
 process also back-tracks when needed (unlike regular ``pip install``).
 
@@ -105,4 +105,31 @@ specifically requested, yielding greatly improved build reproducibility.
 What tool doesn't have shortcomings?
 ====================================
 
-TODO
+There are a few problems I run into with poetry from time to time.
+
+The one I hit the most frequently is the lack of ability to specify tasks. For
+example, defining ``poetry test`` to be ``pytest -vvl tests/``. I really,
+truly, do not want to write a ``Makefile``, but this limitation often leads you
+down that road.
+
+This issue will likely be solvable once poetry `adds support for plugins
+<https://github.com/sdispater/poetry/issues/693>`_, as task running has been
+cited as a specific non-goal for poetry itself. It should be pretty trivial for
+a plugin to add such functionality.
+
+The other big issue that I hit very frequently isn't actually a problem with
+poetry at all!
+
+When you start adding dependencies from the wide world of Python
+packages, you will come to find many packages that don't specify their
+dependencies very well. Since poetry is significantly stricter in how it
+evaluates dependencies (compared to pip), this can often lead to you having to
+add more dependencies to your top-level ``pyproject.toml``. This problem
+becomes especially common when you try to support older versions of Python
+(e.g. 2.7 and 3.4 in 2019).
+
+I'm sold!
+=========
+
+You can get started with poetry by `following the documentation on their
+website <https://poetry.eustace.io/>`_.
