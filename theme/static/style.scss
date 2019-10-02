@@ -71,6 +71,7 @@ tt {
     display: flex;
     justify-content: center;
     align-content: center;
+    flex-wrap: wrap;
 }
 
 .figure {
@@ -80,7 +81,9 @@ tt {
     padding-right: 0.75em;
     padding-top: 0.75em;
     padding-bottom: 0;
+    margin: 0.75em;
     text-align: left;
+    font-size: 10pt;
 }
 
 .highlight {
