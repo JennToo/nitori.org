@@ -10,6 +10,7 @@ def serve(c):
 @task
 def build(c):
     c.run("pelican content -t theme")
+
     with open("output/.nojekyll", "w") as f:
         f.write("")
 
