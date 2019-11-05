@@ -9,7 +9,9 @@ def serve(c):
 
 @task
 def build(c):
-    re_exec("pelican content -t theme")
+    c.run("pelican content -t theme")
+    with open("output/.nojekyll", "w") as f:
+        f.write("")
 
 
 def re_exec(cmd):
