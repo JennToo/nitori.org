@@ -86,7 +86,7 @@ tt {
     font-size: 10pt;
 }
 
-.highlight {
+.highlight, .literal-block {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.25em;
@@ -96,7 +96,7 @@ tt {
     overflow-x: auto;
 }
 
-.highlighttable, .highlight {
+.highlighttable, .highlight, .literal-block {
     background: #272822;
     color: white;
     width: 90%;

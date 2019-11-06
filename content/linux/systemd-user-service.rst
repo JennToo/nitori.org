@@ -28,7 +28,8 @@ I already have secure access to my server setup for SSH which only allows
 key-based login. And with a simple ``ssh`` command I can use an SSH connection
 to reach any other port on the server, like this::
 
-    ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -L 8080:localhost:8080 <my_server>
+    ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes \
+        -L 8080:localhost:8080 <my_server>
 
 As a disclaimer, I totally snagged this command from a Google search, but I
 don't remember where.
