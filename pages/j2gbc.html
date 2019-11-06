@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/theme/css/style.min.css?9f6fe15e">
+        <title>nitori.org :: j2gbc
+</title>
+    </head>
+    <body>
+        <div id="inner-body">
+            <header>
+                <a href="/">nitori.org</a>
+                <nav>
+                    <a href="/">Articles</a>
+                    <a href="/pages/projects.html">Projects</a>
+                    <a href="/pages/contact.html">Contact</a>
+                </nav>
+            </header>
+
+            <main>
+<h1>j2gbc</h1>
+<p>j2gbc is a Game Boy and Game Boy Color emulator. <a class="reference external" href="https://github.com/Nitori-/j2gbc">https://github.com/Nitori-/j2gbc</a></p>
+<p>My motivation for writing it was twofold.</p>
+<p>First, I wanted to try out Rust on a full-sized project. I had used it on a few
+toy projects before but I wanted to try something of a larger scope to see how
+the language plays out at a larger scale (spoiler alert: Rust is pretty good at
+this!).</p>
+<p>My other motivation was to find a side project that I would actually make
+decent progress on. And as it turns out, writing an emulator for an old game
+system like the Game Boy is perfect for this! There's always something I can
+tinker on, even for 15 minutes, and see real forward progress on the overall
+project. This helps maintain momentum, even on the &quot;hard parts&quot; of the project.</p>
+<p>The Game Boy (and really most game consoles from before the N64 / PS1 period)
+are fun systems to work with, since the mental model for the entire system can
+fit into one developer's head. If you want to, you can know in exact detail how
+pretty much any part of the system functions! Which is a far cry from today's
+computing platforms.</p>
+<div class="section" id="screenshots">
+<h2>Screenshots</h2>
+<p>These screenshots were produced with legally obtained ROMs! I actually have the
+cartridges for them, and a little $30 peripheral that can dump those cartridges
+into usable ROMs.</p>
+<p>In my not-legally-trained opinion, reproducing these screenshots to demonstrate
+the functionality of this emulator falls under fair use. The presence of these
+screenshots does not represent any endorsement or even permission from the
+respective copyright holders.</p>
+<div class="figures docutils container">
+<div class="figure" style="width: 33%">
+<a class="reference external image-reference" href="/images/j2gbc/screenshot1.png"><img alt="Warioland 3 title screen" src="/images/j2gbc/screenshot1.png" style="width: 100%;" /></a>
+<p class="caption"><em>Warioland 3</em> was my favorite Game Boy game growing up, so getting it
+running was a big milestone for the project.</p>
+</div>
+<div class="figure" style="width: 33%">
+<a class="reference external image-reference" href="/images/j2gbc/screenshot2.png"><img alt="Warioland 3 gameplay" src="/images/j2gbc/screenshot2.png" style="width: 100%;" /></a>
+<p class="caption">Since I played this game so much before, I used Warioland 3 to gauge how
+well the audio was working. A few instruments are still buggy though 😔</p>
+</div>
+<div class="figure" style="width: 33%">
+<a class="reference external image-reference" href="/images/j2gbc/screenshot3.png"><img alt="Link's Awakening DX title screen" src="/images/j2gbc/screenshot3.png" style="width: 100%;" /></a>
+<p class="caption">I used this ROM (starting with the non-DX DMG version) during the early
+implementation of the emulator. The intro cutscene is especially good for
+making sure your graphics system is working correctly, since it uses a lot
+of tricks to function.</p>
+</div>
+<div class="figure" style="width: 33%">
+<a class="reference external image-reference" href="/images/j2gbc/screenshot4.png"><img alt="Link's Awakening DX gameplay" src="/images/j2gbc/screenshot4.png" style="width: 100%;" /></a>
+<p class="caption">Another reason <em>Link's Awakening</em> is a good early target is that it does
+everything &quot;correctly&quot;. It doesn't have any buggy memory accesses, at
+least in normal gameplay. This made it possible to use harsher memory
+access constraints to detect improper emulation earlier.</p>
+</div>
+</div>
+</div>
+<div class="section" id="functionality-overview">
+<h2>Functionality Overview</h2>
+<p>Graphics:</p>
+<ul class="simple">
+<li>Things mostly work here, both DMG and CGB. I stumble onto visual glitches
+every once in a while but they're usually easy to fix.</li>
+<li>The biggest missing piece for graphics is that the timing of certain &quot;video
+states&quot; isn't emulated cycle-accurately. Because this timing can vary with
+the number of sprites visible on a specific scanline, it can be a little
+tough to emulate this properly.</li>
+</ul>
+<p>Audio:</p>
+<ul class="simple">
+<li>This is mostly functional, but it still has a lot of glitches.</li>
+<li>I think I need to fundamentally re-think the audio stack to fix several of
+the timing issues.</li>
+<li>I've never worked with computer audio before this project so this part was
+definitely a big learning experience!</li>
+</ul>
+<p>System (CPU and peripherals):</p>
+<ul class="simple">
+<li>CPU instructions are all implemented and function correctly. There's a great
+set of test ROMs developed by the GB community that help verify this.</li>
+<li>Cycle accuracy is lacking on a variety of things. E.g. DMAs are all
+essentially instant right now, which is definitely inaccurate.</li>
+<li>The link cable and IR system (CGB only) are not implemented, but this would
+be really cool for the future! I'd like to get it running over the internet
+so you could play multiplayer games remotely.</li>
+</ul>
+<p>Debugger:</p>
+<ul class="simple">
+<li>This is very much a work-in-progress. Right now you can get disassembly
+around the current PC, and do single steps. Breakpoints are supported by the
+CPU core but I need to hook them back up to the GUI.</li>
+<li>There is a built-in MMU-like process in the CPU core. This will trigger a
+breakpoint when a ROM does something fishy (like e.g. jumping into the ROM
+header, or reading from a memory-mapped register that is write-only).
+There's a table with exceptions for known bugs in ROMs (e.g. <em>Tetris</em> does a
+lot of bad things).</li>
+<li>That MMU protection was very useful early on when diagnosing CPU bugs that
+would cause the program execution to spiral out of control. It would also be
+useful for developing new ROMs.</li>
+</ul>
+</div>
+<div class="section" id="lessons-learned">
+<h2>Lessons Learned</h2>
+<p>Having a project with quick positive feedback makes it much more appealing to
+work on that project</p>
+<p>Write real automated tests, even when you're just doing something for fun! This
+was honestly the biggest mistake I made in this project. I was essentially
+manually testing things while I was writing the original core system. Which
+means I've also seen all the possible horribly corrupted variations of the
+intro to <em>Link's Awakening</em> 😂 But now I have a pretty big backlog of technical
+debt for the project.</p>
+</div>
+
+            </main>
+        </div>
+    </body>
+</html>

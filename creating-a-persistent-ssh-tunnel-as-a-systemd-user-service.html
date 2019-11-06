@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/theme/css/style.min.css?9f6fe15e">
+        <title>nitori.org :: Creating a Persistent SSH Tunnel as a SystemD User Service</title>
+    </head>
+    <body>
+        <div id="inner-body">
+            <header>
+                <a href="/">nitori.org</a>
+                <nav>
+                    <a href="/">Articles</a>
+                    <a href="/pages/projects.html">Projects</a>
+                    <a href="/pages/contact.html">Contact</a>
+                </nav>
+            </header>
+
+            <main>
+<p class="article-byline">
+    <time>2019-11-04</time>
+    <br />
+    <span class="author">By Jennifer Wilcox</span>
+</p>
+<h1>Creating a Persistent SSH Tunnel as a SystemD User Service</h1>
+
+<div class="section" id="motivation">
+<h2>Motivation</h2>
+<p>I use <a class="reference external" href="https://owncloud.org/">ownCloud</a> to sync binary files between the
+various computers I use. It's basically like Google Drive or OneDrive, but
+hosted on your own hardware. Which is great, because the last thing I want is
+for Google or Microsoft to get their hands on my meme collection!</p>
+<p>But there's a problem with setting up ownCloud: getting HTTPS running is really
+annoying. I'm sure if I spent enough time on it I could get it to work, but
+that's more trouble than I'd like to deal with.</p>
+<p>So as an alternative, I'd like to just use plain HTTP to connect to the
+service. But since that would be a bad idea over the Internet, we need some
+other solution to secure the connection. Enter: the SSH tunnel</p>
+</div>
+<div class="section" id="ssh-tunnels">
+<h2>SSH Tunnels</h2>
+<p>I already have secure access to my server setup for SSH which only allows
+key-based login. And with a simple <tt class="docutils literal">ssh</tt> command I can use an SSH connection
+to reach any other port on the server, like this:</p>
+<pre class="literal-block">
+ssh -NTC -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes \
+    -L 8080:localhost:8080 &lt;my_server&gt;
+</pre>
+<p>As a disclaimer, I totally snagged this command from a Google search, but I
+don't remember where.</p>
+<p>Let's go through each option in that command since we seem to be doing quite a
+bit:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">-N</span></tt></dt>
+<dd>Don't execute any remote commands. We're just interested in the tunnel itself.</dd>
+<dt><tt class="docutils literal"><span class="pre">-T</span></tt></dt>
+<dd>Disable PTY. We're not running any commands and we don't plan to run this
+interactively so it's not needed anyways.</dd>
+<dt><tt class="docutils literal"><span class="pre">-C</span></tt></dt>
+<dd>Use compression on the link. We're transferring a lot of data over the
+Internet with this tunnel, so this seems prudent to save bandwidth.</dd>
+<dt><tt class="docutils literal"><span class="pre">-o</span> ServerAliveInterval=60</tt></dt>
+<dd>Send a keep-alive message every 60 seconds if no other data has been sent.
+This will help make sure any firewall sessions don't expire. You might have
+to tweak the value depending on how aggressive your firewall is.</dd>
+<dt><tt class="docutils literal"><span class="pre">-o</span> ExitOnForwardFailure=yes</tt></dt>
+<dd>This will cause the <tt class="docutils literal">ssh</tt> process to die if it can't establish the
+connection. This is preferable since we're going to run this with SystemD and
+the exit will communicate to SystemD that something went wrong.</dd>
+<dt><tt class="docutils literal"><span class="pre">-L</span> 8080:localhost:8080</tt></dt>
+<dd>This is the option that's doing most of the work! It sets up a port-forward
+such that port 8080 on the current machine will map to port 8080 on the
+remote machine. For more details about the syntax of this option, check out
+the man page for <tt class="docutils literal">ssh</tt>.</dd>
+</dl>
+<p>Once the tunnel is up I just connect ownCloud to <tt class="docutils literal"><span class="pre">http://localhost:8080</span></tt> and
+everything works great!</p>
+</div>
+<div class="section" id="systemd-user-service">
+<h2>SystemD User Service</h2>
+<p>Pretty much any modern Linux system is using SystemD. This has led to a great
+deal of complaining.</p>
+<p>One neat feature of SystemD is that it supports defining services for an
+individual user. These services can be automatically started when the user logs
+in, which makes it the perfect tool to automatically start the SSH tunnel!</p>
+<p>We just need to write a <tt class="docutils literal">.service</tt> file and drop it in
+<tt class="docutils literal"><span class="pre">~/.config/systemd/user/</span></tt>. Mine looks like this:</p>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
+<span class="na">Description</span><span class="o">=</span><span class="s">ownCloud SSH tunnel</span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+
+<span class="k">[Service]</span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">&quot;SSH_AUTH_SOCK=/run/user/1000/keyring/ssh&quot;</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitO...</span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">3</span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+
+<span class="k">[Install]</span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+</pre></div>
+<p>I won't get into the details about what everything in this file does. But there
+are a few items to take specific note of:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">Environment=&quot;SSH_AUTH_SOCK=/run/user/1000/keyring/ssh&quot;</span></tt></dt>
+<dd>My SSH key files are generally locked with a passphrase, so this makes sure
+that the tunnel can be opened once I login and unlock the key. I'll be
+honest, I don't like this very much since it's hard-coded to UID 1000.
+There's probably a cleaner way to do it.</dd>
+<dt><tt class="docutils literal">WantedBy=default.target</tt></dt>
+<dd>This is how you make sure the service gets started up automatically when you
+login.</dd>
+</dl>
+<p>Now that we have a service file, we could use typical <tt class="docutils literal">systemctl</tt> commands to
+get it up and running. We just have to be sure to pass <tt class="docutils literal"><span class="pre">--user</span></tt> to make sure
+it's operating on the user-specific services instead of the global ones. But
+using <tt class="docutils literal">systemctl</tt> to install the service is pretty manual, so I don't like to
+use it.</p>
+</div>
+<div class="section" id="automating-it">
+<h2>Automating It</h2>
+<p>There's <a class="reference external" href="https://github.com/Nitori-/no-place-like-home">no place quite like home</a>, so I maintain a set of
+Ansible scripts to keep all the machines I use configured in the same way.</p>
+<p>Here's an Ansible blob that will enable and start our new SystemD user service:</p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Enable owncloud tunnel service</span>
+  <span class="nt">systemd</span><span class="p">:</span>
+    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
+    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="nt">scope</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">user</span>
+    <span class="nt">daemon_reload</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">owncloud-tunnel</span>
+</pre></div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion</h2>
+<p>This method of securing access to ownCloud is pretty convenient. It lets me
+just open a single hole in my home firewall for SSH, which definitely seems
+more secure. And it's way easier than setting up HTTPS.</p>
+<p>There are some downsides to this approach though. By locking the ownCloud
+frontend behind SSH, I can't really connect to it on my phone unless I'm at
+home. I don't use ownCloud on my phone that much anyways, so this isn't a deal
+breaker for me.</p>
+</div>
+
+            </main>
+        </div>
+    </body>
+</html>

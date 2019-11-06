@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/theme/css/style.min.css?9f6fe15e">
+        <title>nitori.org :: I ❤️ poetry</title>
+    </head>
+    <body>
+        <div id="inner-body">
+            <header>
+                <a href="/">nitori.org</a>
+                <nav>
+                    <a href="/">Articles</a>
+                    <a href="/pages/projects.html">Projects</a>
+                    <a href="/pages/contact.html">Contact</a>
+                </nav>
+            </header>
+
+            <main>
+<p class="article-byline">
+    <time>2019-09-30</time>
+    <br />
+    <span class="author">By Jennifer Wilcox</span>
+</p>
+<h1>I ❤️ poetry</h1>
+
+<p>poetry is a really cool Python development environment manager, and I hope I
+can convince you it's cool enough for your next project. But to understand why
+I like it so much it helps to have...</p>
+<div class="section" id="a-bit-of-motivation">
+<h2>A bit of motivation</h2>
+<div class="section" id="reproducing-a-build">
+<h3>Reproducing a build</h3>
+<p>Imagine you're pulling down an open-source Python repository that you want to
+play with. How will you setup the development environment? The process
+will often take one of these forms:</p>
+<ul class="simple">
+<li>If there is a <tt class="docutils literal">Makefile</tt> for managing the environment, use it</li>
+<li>If there is a <tt class="docutils literal">requirements.txt</tt> (or similar) file, create a new
+<tt class="docutils literal">virtualenv</tt> and <tt class="docutils literal">pip install <span class="pre">-r</span></tt> the requirements. Let's hope the
+compatible versions are well specified.</li>
+<li>Maybe the requirements are just in <tt class="docutils literal">setup.py</tt>, and we can install those in
+a <tt class="docutils literal">virtualenv</tt>. Who knows how we get the test dependencies.</li>
+</ul>
+<p>So somehow you've managed to setup an environment with the dependent packages.
+Feeling accomplished you run the tests, and watch as they explode in a
+cacophony of failures.</p>
+<p>It turns out that, compared to the last CI run for the package, you have a
+slightly different version of some deep transitive dependency. And that change
+breaks everything.</p>
+<p>If you work with enough Python packages this story is all too familiar. 🙄</p>
+</div>
+<div class="section" id="what-is-all-this-junk">
+<h3>What is all this junk?</h3>
+<p>Look at your average Python package repo and what kinds of files do you see?
+There's the source code and tests, sure. But you've also got the likes of:</p>
+<ul class="simple">
+<li><tt class="docutils literal">setup.py</tt> for making the package installable</li>
+<li><tt class="docutils literal">MANIFEST.in</tt> for including extra files in the package</li>
+<li><tt class="docutils literal">requirements.txt</tt>, <tt class="docutils literal"><span class="pre">test-requirements.txt</span></tt>, etc. for specifying
+dependencies</li>
+</ul>
+<p>Maintaining these files is annoying. They each have their own syntax and
+quirks, and they pollute the repository with files that aren't really
+&quot;essential&quot; to the package.</p>
+</div>
+</div>
+<div class="section" id="poetry-to-the-rescue">
+<h2>poetry to the rescue!</h2>
+<p>poetry tries to address both of the problems I've mentioned above (and a few
+others). There are two core files present in any poetry-based Python project:</p>
+<ul class="simple">
+<li><tt class="docutils literal">pyproject.toml</tt>, which contains most of the information about a package
+such as its name, version, description, and dependencies.</li>
+<li><tt class="docutils literal">poetry.lock</tt>, which contains specific versions of the dependencies
+(transitively) used when running tests and other commands.</li>
+</ul>
+<p>Here's an example <tt class="docutils literal">pyproject.toml</tt> file for a simple Python package:</p>
+<div class="highlight"><pre><span></span><span class="k">[tool.poetry]</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s">&quot;my_totally_cool_project&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s">&quot;0.1.0&quot;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s">&quot;It does cool stuff, trust me&quot;</span>
+<span class="n">authors</span> <span class="o">=</span> <span class="k">[&quot;Jennifer Wilcox &lt;jennifer@nitori.org&gt;&quot;]</span>
+
+<span class="k">[tool.poetry.dependencies]</span>
+<span class="n">python</span> <span class="o">=</span> <span class="s">&quot;^3.6&quot;</span>
+<span class="c1"># It&#39;s a web app</span>
+<span class="n">flask</span> <span class="o">=</span> <span class="s">&quot;^1.1&quot;</span>
+
+<span class="k">[tool.poetry.dev-dependencies]</span>
+<span class="n">pytest</span> <span class="o">=</span> <span class="s">&quot;^4.2&quot;</span>
+<span class="n">pylama</span> <span class="o">=</span> <span class="s">&quot;^7.6&quot;</span>
+<span class="n">pylint</span> <span class="o">=</span> <span class="s">&quot;^2.2&quot;</span>
+<span class="n">pytest-cov</span> <span class="o">=</span> <span class="s">&quot;^2.6&quot;</span>
+<span class="n">black</span> <span class="o">=</span> <span class="s">&quot;18.9b0&quot;</span>
+<span class="n">sphinx</span> <span class="o">=</span> <span class="s">&quot;^2.0&quot;</span>
+
+<span class="k">[build-system]</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="k">[&quot;poetry&gt;=0.12&quot;]</span>
+<span class="n">build-backend</span> <span class="o">=</span> <span class="s">&quot;poetry.masonry.api&quot;</span>
+</pre></div>
+<p>This file alone replaces <tt class="docutils literal">setup.py</tt>, <tt class="docutils literal">MANIFEST.in</tt>, <tt class="docutils literal">requirements.txt</tt>,
+<tt class="docutils literal"><span class="pre">test-requirements.txt</span></tt> and more!</p>
+<p>We've also specified our package's dependencies and dev-dependencies using the
+common semver specifiers. Whenever we run <tt class="docutils literal">poetry update</tt> it will take these
+dependencies and attempt to resolve a set of packages that satisfy them. This
+process also back-tracks when needed (unlike regular <tt class="docutils literal">pip install</tt>).</p>
+<p>Once a set of packages satisfying the dependencies has been found, poetry will
+generate a <tt class="docutils literal">poetry.lock</tt> file listing all of the required packages. This
+ensures that dependencies (even transitive dependencies) are only changes when
+specifically requested, yielding greatly improved build reproducibility.</p>
+</div>
+<div class="section" id="what-tool-doesn-t-have-shortcomings">
+<h2>What tool doesn't have shortcomings?</h2>
+<p>There are a few problems I run into with poetry from time to time.</p>
+<p>The one I hit the most frequently is the lack of ability to specify tasks. For
+example, defining <tt class="docutils literal">poetry test</tt> to be <tt class="docutils literal">pytest <span class="pre">-vvl</span> tests/</tt>. I really,
+truly, do not want to write a <tt class="docutils literal">Makefile</tt>, but this limitation often leads you
+down that road.</p>
+<p>This issue will likely be solvable once poetry <a class="reference external" href="https://github.com/sdispater/poetry/issues/693">adds support for plugins</a>, as task running has been
+cited as a specific non-goal for poetry itself. It should be pretty trivial for
+a plugin to add such functionality.</p>
+<p>The other big issue that I hit very frequently isn't actually a problem with
+poetry at all!</p>
+<p>When you start adding dependencies from the wide world of Python
+packages, you will come to find many packages that don't specify their
+dependencies very well. Since poetry is significantly stricter in how it
+evaluates dependencies (compared to pip), this can often lead to you having to
+add more dependencies to your top-level <tt class="docutils literal">pyproject.toml</tt>. This problem
+becomes especially common when you try to support older versions of Python
+(e.g. 2.7 and 3.4 in 2019).</p>
+</div>
+<div class="section" id="i-m-sold">
+<h2>I'm sold!</h2>
+<p>You can get started with poetry by <a class="reference external" href="https://poetry.eustace.io/">following the documentation on their
+website</a>.</p>
+</div>
+
+            </main>
+        </div>
+    </body>
+</html>
