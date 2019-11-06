@@ -73,7 +73,7 @@ SystemD User Service
 Pretty much any modern Linux system is using SystemD. This has led to a great
 deal of complaining.
 
-One neat feature of SystemD is that it support defining services for an
+One neat feature of SystemD is that it supports defining services for an
 individual user. These services can be automatically started when the user logs
 in, which makes it the perfect tool to automatically start the SSH tunnel!
 
