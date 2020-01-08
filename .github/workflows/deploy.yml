@@ -17,7 +17,7 @@ jobs:
         with:
           args: run invoke build
       - uses: JamesIves/github-pages-deploy-action@3.1.2
-        env:
+        with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
           FOLDER: output
