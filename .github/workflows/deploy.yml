@@ -16,7 +16,6 @@ jobs:
       - uses: abatilo/actions-poetry@1.0.3
         with:
           args: run invoke build
-      - run: "rm -rf output/theme/.webassets-cache"
       - uses: JamesIves/github-pages-deploy-action@3.1.2
         with:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

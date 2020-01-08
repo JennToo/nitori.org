@@ -11,6 +11,7 @@ def serve(c):
 def build(c):
     c.run("pelican content -t theme")
 
+    c.run("rm -rf output/theme/.webassets-cache")
     with open("output/.nojekyll", "w") as f:
         f.write("")
 
