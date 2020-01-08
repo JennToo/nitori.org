@@ -16,7 +16,7 @@ jobs:
       - uses: abatilo/actions-poetry@1.0.3
         with:
           args: run invoke build
-      - uses: JamesIves/github-pages-deploy-action@2.0.3
+      - uses: JamesIves/github-pages-deploy-action@2.1.2
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: gh-pages
