@@ -6,6 +6,10 @@
 <p class="article-byline">
     <time>{{ article.date.strftime("%Y-%m-%d") }}</time>
     <br />
+    {% if article.modified %}
+    <time>Updated: {{ article.modified.strftime("%Y-%m-%d") }}</time>
+    <br />
+    {% endif %}
     <span class="author">By {{ article.author }}</span>
 </p>
 <h1>{{ article.title }}</h1>
