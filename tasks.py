@@ -14,7 +14,6 @@ def build(c):
     c.run("rm -rf output/theme/.webassets-cache")
     with open("output/.nojekyll", "w") as f:
         f.write("")
-    c.run("cp keybase.txt output/")
 
 
 def re_exec(cmd):
