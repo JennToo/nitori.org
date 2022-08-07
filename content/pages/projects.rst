@@ -35,3 +35,8 @@ currently working, or currently maintain, or have maintained, etc.
   also a long standing bug with ncclient and how it handles identityrefs
   (seriously who puts XML namespace refs within the text of an element? the
   IETF is who)
+
+**Printables profile**
+
+ - `3D models listed on Printables <https://www.printables.com/social/117846-jenntoo/models>`__
+ - I enjoy 3D printing, and any models I publish I put on Printables
