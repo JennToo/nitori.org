@@ -14,6 +14,8 @@ def build(c):
     c.run("rm -rf output/theme/.webassets-cache")
     with open("output/.nojekyll", "w") as f:
         f.write("")
+    with open("output/CNAME", "w") as f:
+        f.write("nitori.org\n")
 
 
 def re_exec(cmd):
