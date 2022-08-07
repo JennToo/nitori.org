@@ -34,12 +34,12 @@ active development. If our build artifacts are large (perhaps in the GB range)
 we will need to start pruning old builds.</p>
 <p>A simple solution for pruning builds is just to discard builds older than a
 certain date. However, it can sometimes be useful to preserve a few olds
-builds <a class="footnote-reference" href="#id3" id="id1">[1]</a>. This can be especially useful when trying to track down an obscure bug.
+builds <a class="footnote-reference" href="#footnote-1" id="footnote-reference-1">[1]</a>. This can be especially useful when trying to track down an obscure bug.
 If we have a few old builds around, we can more effectively <a class="reference external" href="https://git-scm.com/docs/git-bisect">bisect</a> commits to
 try and find the culprit.</p>
 <p>So we might want to have an aggressive pruning policy for maybe the last two
 weeks or so. But we also want to preserve 15 builds from the last year. And
-ideally we'd like those 15 builds to be spaced apart in time <a class="footnote-reference" href="#id4" id="id2">[2]</a> as far as
+ideally we'd like those 15 builds to be spaced apart in time <a class="footnote-reference" href="#footnote-2" id="footnote-reference-2">[2]</a> as far as
 possible.</p>
 <p>Since we're implementing continuous integration, our builds could happen at any
 time. Thus the problem presents itself: if we have a list of all the builds in
@@ -69,16 +69,16 @@ A = [1, 2, 3, 4, 5, 6, 7]; m=4 \quad &amp;\Rightarrow \quad B = [1, 3, 5, 7]
 \end{equation*}
 </div>
 <p>In each of these examples, the metric given above is <span class="math">\(0\)</span></p>
-<table class="docutils footnote" frame="void" id="id3" rules="none">
+<table class="docutils footnote" frame="void" id="footnote-1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Hermetically reproducible builds is another possible solution</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-1">[1]</a></td><td>Hermetically reproducible builds is another possible solution</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id4" rules="none">
+<table class="docutils footnote" frame="void" id="footnote-2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>One could also argue that it's better to be uniformly spaced between
+<tr><td class="label"><a class="fn-backref" href="#footnote-reference-2">[2]</a></td><td>One could also argue that it's better to be uniformly spaced between
 build numbers, as it would preserve more builds from a period of more active
 development, making bisection more efficient</td></tr>
 </tbody>

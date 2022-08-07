@@ -86,18 +86,18 @@ individual user. These services can be automatically started when the user logs
 in, which makes it the perfect tool to automatically start the SSH tunnel!</p>
 <p>We just need to write a <tt class="docutils literal">.service</tt> file and drop it in
 <tt class="docutils literal"><span class="pre">~/.config/systemd/user/</span></tt>. Mine looks like this:</p>
-<div class="highlight"><pre><span></span><span class="k">[Unit]</span>
-<span class="na">Description</span><span class="o">=</span><span class="s">ownCloud SSH tunnel</span>
-<span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+<div class="highlight"><pre><span></span><span class="k">[Unit]</span><span class="w"></span>
+<span class="na">Description</span><span class="o">=</span><span class="s">ownCloud SSH tunnel</span><span class="w"></span>
+<span class="na">After</span><span class="o">=</span><span class="s">network.target</span><span class="w"></span>
 
-<span class="k">[Service]</span>
-<span class="na">Environment</span><span class="o">=</span><span class="s">&quot;SSH_AUTH_SOCK=/run/user/1000/keyring/ssh&quot;</span>
-<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitO...</span>
-<span class="na">RestartSec</span><span class="o">=</span><span class="s">3</span>
-<span class="na">Restart</span><span class="o">=</span><span class="s">always</span>
+<span class="k">[Service]</span><span class="w"></span>
+<span class="na">Environment</span><span class="o">=</span><span class="s">&quot;SSH_AUTH_SOCK=/run/user/1000/keyring/ssh&quot;</span><span class="w"></span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/ssh -NTC -o ServerAliveInterval=60 -o ExitO...</span><span class="w"></span>
+<span class="na">RestartSec</span><span class="o">=</span><span class="s">3</span><span class="w"></span>
+<span class="na">Restart</span><span class="o">=</span><span class="s">always</span><span class="w"></span>
 
-<span class="k">[Install]</span>
-<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span>
+<span class="k">[Install]</span><span class="w"></span>
+<span class="na">WantedBy</span><span class="o">=</span><span class="s">default.target</span><span class="w"></span>
 </pre></div>
 <p>I won't get into the details about what everything in this file does. But there
 are a few items to take specific note of:</p>
@@ -122,13 +122,13 @@ use it.</p>
 <p>There's <a class="reference external" href="https://github.com/Nitori-/no-place-like-home">no place quite like home</a>, so I maintain a set of
 Ansible scripts to keep all the machines I use configured in the same way.</p>
 <p>Here's an Ansible blob that will enable and start our new SystemD user service:</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Enable owncloud tunnel service</span>
-  <span class="nt">systemd</span><span class="p">:</span>
-    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">started</span>
-    <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-    <span class="nt">scope</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">user</span>
-    <span class="nt">daemon_reload</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">owncloud-tunnel</span>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Enable owncloud tunnel service</span><span class="w"></span>
+<span class="w">  </span><span class="nt">systemd</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">started</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<span class="w">    </span><span class="nt">scope</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">user</span><span class="w"></span>
+<span class="w">    </span><span class="nt">daemon_reload</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">owncloud-tunnel</span><span class="w"></span>
 </pre></div>
 </div>
 <div class="section" id="conclusion">
