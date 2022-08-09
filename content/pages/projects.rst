@@ -38,5 +38,5 @@ currently working, or currently maintain, or have maintained, etc.
 
 **Printables profile**
 
- - `3D models listed on Printables <https://www.printables.com/social/117846-jenntoo/models>`__
- - I enjoy 3D printing, and any models I publish I put on Printables
+- `3D models listed on Printables <https://www.printables.com/social/117846-jenntoo/models>`__
+- I enjoy 3D printing, and any models I publish I put on Printables
