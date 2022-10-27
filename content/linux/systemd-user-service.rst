@@ -118,7 +118,7 @@ Automating It
 =============
 
 There's `no place quite like home
-<https://github.com/Nitori-/no-place-like-home>`_, so I maintain a set of
+<https://github.com/JennToo/no-place-like-home>`_, so I maintain a set of
 Ansible scripts to keep all the machines I use configured in the same way.
 
 Here's an Ansible blob that will enable and start our new SystemD user service:

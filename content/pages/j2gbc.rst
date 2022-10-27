@@ -3,7 +3,7 @@ j2gbc
 
 :slug: j2gbc
 
-j2gbc is a Game Boy and Game Boy Color emulator. https://github.com/Nitori-/j2gbc
+j2gbc is a Game Boy and Game Boy Color emulator. https://github.com/JennToo/j2gbc
 
 My motivation for writing it was twofold.
 

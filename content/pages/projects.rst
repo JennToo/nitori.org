@@ -9,7 +9,7 @@ currently working, or currently maintain, or have maintained, etc.
 **j2gbc: A Game Boy Color Emulator and ROM debugger written in Rust**
 
 - `Writeup about the project <{filename}j2gbc.rst>`__
-- `GitHub repository <https://github.com/Nitori-/j2gbc>`__
+- `GitHub repository <https://github.com/JennToo/j2gbc>`__
 
 **WatchIt: An automatic script re-runner inspired by inotifytools**
 
@@ -19,11 +19,11 @@ currently working, or currently maintain, or have maintained, etc.
 **altgo.us: A website for various transgender support groups and resources in Alabama**
 
 - `Live website <https://altgo.us/>`__
-- `GitHub repository <https://github.com/Nitori-/altgo-us>`__
+- `GitHub repository <https://github.com/JennToo/altgo-us>`__
 
 **no-place-like-home: Automated Linux environment management**
 
-- `GitHub repository <https://github.com/Nitori-/no-place-like-home>`__
+- `GitHub repository <https://github.com/JennToo/no-place-like-home>`__
 - I use many different systems, so this is an automated way for me to keep all
   my settings in sync
 
