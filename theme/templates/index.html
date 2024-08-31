@@ -9,7 +9,7 @@
 {% for article in articles_page.object_list %}
 <tr>
 <td>
-    <time>{{ article.date.strftime("%Y-%m-%d") }}</time>
+    <time>{{ article.date.strftime("%Y-%m-%d") | replace("-", "&#x2011;") }}</time>
 </td>
 <td class="article-summary-block">
     <p>
