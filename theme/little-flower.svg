@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="3.2567115mm"
+   height="3.0909047mm"
+   viewBox="0 0 3.2567116 3.0909048"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   sodipodi:docname="little_flower.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="16.421381"
+     inkscape:cx="4.1104948"
+     inkscape:cy="10.200117"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="488"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <filter
+       id="mask-powermask-path-effect3_inverse"
+       inkscape:label="filtermask-powermask-path-effect3"
+       style="color-interpolation-filters:sRGB"
+       height="100"
+       width="100"
+       x="-50"
+       y="-50">
+      <feColorMatrix
+         id="mask-powermask-path-effect3_primitive1"
+         values="1"
+         type="saturate"
+         result="fbSourceGraphic" />
+      <feColorMatrix
+         id="mask-powermask-path-effect3_primitive2"
+         values="-1 0 0 0 1 0 -1 0 0 1 0 0 -1 0 1 0 0 0 1 0 "
+         in="fbSourceGraphic" />
+    </filter>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.6432603,-6.9640458)">
+    <path
+       id="path1"
+       style="fill:#797593;fill-opacity:1;stroke-width:0.0755482"
+       d="M 10.15116,6.9875634 C 9.8391682,7.0678339 9.5753033,7.4122893 9.6947847,7.7367333 9.5705669,7.8694426 9.4341163,7.6629979 9.2785069,7.6904395 8.8953122,7.6621977 8.5573351,8.0697064 8.6606716,8.4414308 8.7069717,8.7093746 8.9777689,8.8808381 9.237915,8.8767972 9.3210275,9.0357144 9.0568833,9.09139 9.0487908,9.2600233 8.9315832,9.5979309 9.1690686,10.030416 9.5406267,10.053271 c 0.2733335,0.02945 0.5600153,-0.1311447 0.6576773,-0.3917792 0.181764,-0.051785 0.165532,0.2024591 0.307,0.2707444 0.180608,0.1478598 0.452092,0.1548708 0.656954,0.056075 C 11.4918,9.8185981 11.619264,9.3117247 11.342622,9.0397854 11.20543,8.9774966 11.304544,8.8419212 11.42751,8.8702766 11.848482,8.7888652 12.060425,8.1914994 11.755927,7.8777255 11.606058,7.7242589 11.37987,7.6338282 11.167767,7.6997282 c -0.104229,0.019676 -0.251984,0.1649559 -0.29234,0.012077 0.107178,-0.3435801 -0.173454,-0.7343344 -0.531953,-0.7471677 -0.0648,-0.00298 -0.129939,0.00537 -0.192314,0.022926 z m -0.0592,1.0531951 c 0.518282,-0.2091614 1.020796,0.464193 0.68648,0.8944227 C 10.550763,9.2952601 9.9522989,9.2926029 9.7427402,8.9156958 9.5405306,8.5970206 9.732174,8.1411919 10.09196,8.0407585 Z" />
+  </g>
+</svg>
