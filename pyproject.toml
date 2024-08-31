@@ -5,13 +5,13 @@ description = ""
 authors = ["Jennifer Wilcox <jennifer@nitori.org>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
-pelican = "^4.0"
-markdown = "^3.1"
-invoke = "^1.2"
-webassets = "^0.12.1"
+python = "^3.12"
 cssmin = "^0.2.0"
-pyscss = "^1.3"
+invoke = "^2.2.0"
+libsass = "^0.23.0"
+pelican = "^4.0"
+pelican-render-math = "^1.0.3"
+pelican-webassets = "^2.0.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

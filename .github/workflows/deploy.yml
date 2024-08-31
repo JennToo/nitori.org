@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: "git submodule update --init --recursive"
       - uses: actions/setup-python@v1
         with:
-          python-version: 3.8
-      - uses: abatilo/actions-poetry@v2.1.6
+          python-version: 3.12
+      - uses: abatilo/actions-poetry@v2.3.0
       - run: poetry install
       - run: poetry run invoke build
       - uses: JamesIves/github-pages-deploy-action@v4.4.0

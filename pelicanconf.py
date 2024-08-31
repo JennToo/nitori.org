@@ -19,5 +19,4 @@ SOCIAL = None
 
 DEFAULT_PAGINATION = False
 
-PLUGIN_PATHS = ["pelican-plugins"]
-PLUGINS = ["assets", "render_math"]
+#PLUGINS = ["assets", "render_math"]
