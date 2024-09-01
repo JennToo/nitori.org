@@ -4,6 +4,7 @@ I ❤️ poetry
 :date: 2019-9-30
 :summary: And I don't mean the kind from English class
 :tags: python, poetry
+:slug: i-love-poetry
 
 poetry is a really cool Python development environment manager, and I hope I
 can convince you it's cool enough for your next project. But to understand why

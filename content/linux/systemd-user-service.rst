@@ -4,6 +4,7 @@ Creating a Persistent SSH Tunnel as a SystemD User Service
 :date: 2019-11-4
 :summary: HTTPS is hard, but SSH is easy!
 :tags: linux, ssh
+:slug: ssh-tunnel-systemd
 
 Motivation
 ==========

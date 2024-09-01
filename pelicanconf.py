@@ -1,6 +1,6 @@
 AUTHOR = "Jennifer Wilcox"
 SITENAME = "nitori.org"
-SITEURL = ""
+SITEURL = "https://nitori.org"
 
 PATH = "content"
 
@@ -19,4 +19,11 @@ SOCIAL = None
 
 DEFAULT_PAGINATION = False
 
-#PLUGINS = ["assets", "render_math"]
+ARTICLE_URL = 'posts/{date:%Y}/{slug}/'
+ARTICLE_SAVE_AS = 'posts/{date:%Y}/{slug}/index.html'
+PAGE_URL = 'pages/{slug}/'
+PAGE_SAVE_AS = 'pages/{slug}/index.html'
+SLUGIFY_SOURCE = 'title'
+
+FEED_DOMAIN = SITEURL
+FEED_RSS = 'rss.xml'

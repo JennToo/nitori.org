@@ -5,7 +5,7 @@ Problem: Finding a list subset with uniform distribution
 :modified: 2020-10-18
 :summary: A surprisingly difficult problem
 :tags: math
-:slug: uniform_list
+:slug: uniform-list
 
 Context
 =======

@@ -7,6 +7,7 @@
         {% assets filters="libsass,cssmin", output="css/style.min.css", "style.scss" %}
         <link rel="stylesheet" href="/{{ ASSET_URL }}">
         {% endassets %}
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml">
         <title>nitori.org :: {% block title %}{% endblock%}</title>
     </head>
     <body>
@@ -15,8 +16,8 @@
                 <a href="/"><img class="rotater" src="/theme/little-flower.svg" width="40" alt="A flower" /></a>
                 <nav>
                     <a href="/">Articles</a>
-                    <a href="/pages/projects.html">Projects</a>
-                    <a href="/pages/contact.html">Contact</a>
+                    <a href="/pages/projects/">Projects</a>
+                    <a href="/pages/contact/">Contact</a>
                 </nav>
             </header>
 
