@@ -1,20 +1,22 @@
-// Based on the wonderful Rose Pine theme:
+// Initially based on the wonderful Rose Pine theme:
 //   https://rosepinetheme.com/palette/ingredients/
+// But modified to be more green and earthy <3
 $base: #faf4ed;
-$foam: #56949f;
+$dirt: #9e8755;
 $gold: #ea9d34;
 $highlight-high: #cecacd;
 $highlight-low: #f4ede8;
 $highlight-medium: #dfdad9;
 $iris: #907aa9;
 $love: #b4637a;
-$muted: #9893a5;
+$muted: #96a593;
 $overlay: #f2e9e1;
-$pine: #286983;
+$grass: #388228;
 $rose: #d7827e;
-$subtle: #797593;
+$subtle: #7b9376;
 $surface: #fffaf3;
-$text: #575279;
+$text: #587751;
+$flower: #f7b06a;
 
 body {
     font: 12pt sans-serif;
@@ -22,6 +24,11 @@ body {
     justify-content: center;
     background-color: $base;
     color: $text;
+    margin-top: 0;
+}
+
+h1 {
+    margin-top: 0;
 }
 
 a, a:visited {
@@ -29,7 +36,7 @@ a, a:visited {
 }
 
 a:hover {
-    color: $foam;
+    color: $flower;
 }
 
 #inner-body {
@@ -39,19 +46,28 @@ a:hover {
 
 header {
     padding-bottom: 0.5em;
-    padding-right: 0.5em;
     padding-left: 0.5em;
 
     display: flex;
     justify-content: space-between;
 }
 
+header a {
+    padding-top:8px;
+}
+
 nav {
     display: inline;
+    padding-top: 8px;
+    padding-left: 1em;
+    padding-right: 1em;
+    background-color: $surface;
+    border-radius: 0 0 1.5em 1.5em;
 }
 
 nav a {
-    padding-left: 0.5em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
 }
 
 main {
@@ -114,6 +130,15 @@ tt {
     color: $text;
 }
 
+.rotater {
+    overflow: hidden;
+    transition-duration: 0.8s;
+    transition-property: transform;
+}
+.rotater:hover {
+    transform: rotate(270deg);
+}
+
 .footnote-reference {
     vertical-align: super;
     font-size: 8pt;
@@ -150,7 +175,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 .highlight .hll { background-color: #ffffcc }
 .highlight .c { color: $highlight-high } /* Comment */
 .highlight .err { color: #a61717; background-color: #e3d2d2 } /* Error */
-.highlight .k { color: $foam } /* Keyword */
+.highlight .k { color: $dirt } /* Keyword */
 .highlight .ch { color: $subtle } /* Comment.Hashbang */
 .highlight .cm { color: $subtle } /* Comment.Multiline */
 .highlight .cp { color: #1e889b } /* Comment.Preproc */
@@ -175,7 +200,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding: 0 5px
 .highlight .kt { color: #00688B; font-weight: bold } /* Keyword.Type */
 .highlight .m { color: #B452CD } /* Literal.Number */
 .highlight .s { color: $gold } /* Literal.String */
-.highlight .na { color: $pine } /* Name.Attribute */
+.highlight .na { color: $grass } /* Name.Attribute */
 .highlight .nb { color: #658b00 } /* Name.Builtin */
 .highlight .nc { color: #008b45; font-weight: bold } /* Name.Class */
 .highlight .no { color: #00688B } /* Name.Constant */
