@@ -4,7 +4,7 @@ import os
 
 @task
 def serve(c):
-    re_exec("pelican content -l -r -t theme -b 0.0.0.0")
+    re_exec("pelican content -l --relative-urls -r -t theme -b 0.0.0.0")
 
 
 @task
