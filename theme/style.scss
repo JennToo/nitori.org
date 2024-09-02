@@ -70,14 +70,14 @@ nav a {
     padding-right: 0.25em;
 }
 
-main {
+.body-block {
     margin-top: 1em;
     padding: 1em;
     background-color: $surface;
     border-radius: 1.5em;
 }
 
-main li {
+li {
     padding-bottom: 0.4em;
     list-style-image: url(/theme/little-flower.svg);
 }
