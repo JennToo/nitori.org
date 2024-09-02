@@ -1,9 +1,26 @@
 {% extends "base.html" %}
 
-{% block title %}Articles{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block body %}
-<h1>Articles</h1>
+<div class="body-block">
+    <h1>Welcome to my website!</h1>
+    <p>
+        Hi! I'm Jennifer, and this is my website. I don't post on it often, but
+        there are some pages and blog posts about things I find neat or
+        interesting.
+    </p>
+</div>
+<div class="body-block">
+<h1>Pages</h1>
+<ul>
+    <li><a href="/pages/projects/">Projects that I've worked on</a></li>
+    <li><a href="/pages/contact/">My contact info, get in touch!</a></li>
+</ul>
+</div>
+
+<div class="body-block">
+<h1>Posts</h1>
 
 <table class="article-summary-table">
 {% for article in articles_page.object_list %}
@@ -20,5 +37,5 @@
 </tr>
 {% endfor %}
 </table>
-
+</div>
 {% endblock %}
