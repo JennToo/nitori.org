@@ -81,9 +81,17 @@ nav a {
     border-radius: 1.5em;
 }
 
+ul {
+    padding-left: 20px;
+}
+
 li {
     padding-bottom: 0.4em;
     list-style-image: url(/theme/little-flower.svg);
+}
+
+ul ul li {
+    list-style-image: url(/theme/little-flower-2.svg);
 }
 
 .article-summary-block p {
