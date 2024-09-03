@@ -3,6 +3,11 @@ j2gbc
 
 :slug: j2gbc
 
+.. image:: /theme/stamps/gameboy.gif
+   :target: https://shishka.neocities.org/shishka/stamps
+   :alt: Pink Game Boy start screen
+   :align: right
+
 j2gbc is a Game Boy and Game Boy Color emulator. https://github.com/JennToo/j2gbc
 
 My motivation for writing it was twofold.
