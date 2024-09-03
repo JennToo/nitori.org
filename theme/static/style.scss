@@ -56,17 +56,16 @@ header {
     justify-content: space-between;
 }
 
-header a {
-    padding-top:8px;
+header {
+    margin-top: 8px;
 }
-
 nav {
-    display: inline;
-    padding-top: 8px;
+    display: flex;
+    align-items: center;
     padding-left: 1em;
     padding-right: 1em;
     background-color: $surface;
-    border-radius: 0 0 1.5em 1.5em;
+    border-radius: 1.5em;
 }
 
 nav a {
