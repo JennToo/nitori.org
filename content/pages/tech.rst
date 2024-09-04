@@ -90,6 +90,12 @@ repository <https://github.com/JennToo/home-services>`_
   control fans and 3d printers, and that's about it. Home Assistant works great
   for that. There's a lot of fancy things that it can do too that I've never
   really explored. Maybe someday!
+
+  - I mainly use this to control the fan pointed at my bed while I sleep. At
+    night I can get too warm, so I like the fan on. But by the time I wake up I
+    don't want to get out of bed since it's too cold! 🥶 But with a smart plug,
+    I can use my phone to turn the fan off. Otherwise I'll stay in the warm and
+    cozy bed too long.
 - **Dokuwiki** is a very simple wiki system where I keep my notes. It's a
   little janky, but it works well enough.
 - I follow RSS feeds using **FreshRSS**. It works well enough. Not fancy at
