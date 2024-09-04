@@ -27,6 +27,7 @@
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#programming" id="toc-entry-1">Programming</a></li>
+<li><a class="reference internal" href="#home-services" id="toc-entry-2">Home Services</a></li>
 </ul>
 </div>
 <div class="section" id="programming">
@@ -52,14 +53,87 @@ reach for the most often.<ul>
 <li>I use <strong>Python</strong> by default. Most of my work doesn't require high runtime
 efficiency. Since I'm usually developing tools and CI infrastructure, the
 ability to glue disparate systems together quickly is my main priority. And
-Python is great for that.</li>
+Python is great for that. 💖🐍</li>
 <li>When I need resource efficiency, I'll use <strong>Rust</strong>. It works well on
 embedded targets and for systems that need better performance than what
 Python can offer. I wrote <a class="reference external" href="https://nitori.org/pages/j2gbc/">my Game Boy emulator</a> in
 Rust.</li>
+<li>I'm also proficient with these languages, but they're not my first choices
+for new projects:<ul>
+<li><strong>C++</strong> is fine, but not something I'll choose for a new project. The
+language is a bit of a mess, with so many wrong ways to do something. The
+tooling is also generally bad, except GDB which is great!</li>
+<li>I admire <strong>C</strong> for its simplicity, but I wouldn't use it on anything
+bigger than a toy project if I could help it.</li>
+<li><strong>Groovy</strong> is not a good language at all. But since I write a lot of
+Jenkins CI pipelines at work, that involves writing a lot of Groovy 😭</li>
+<li>Various <strong>Lisps</strong> are cool! Being <a class="reference external" href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconic</a> is neat, especially when
+combined with macros. I also think the model of &quot;live&quot; programming is
+interesting, though I never really wrapped my head around it.</li>
 </ul>
 </li>
 </ul>
+</li>
+<li>For static website development I use <strong>Pelican</strong>. It's a <a class="reference external" href="https://getpelican.com/">Python based site
+generator</a>. It turns Jinja templates and
+Markdown / reStructuredText files and turns them into webpages.<ul>
+<li>This website is made in Pelican!</li>
+<li>I also use Pelican for maintaining <a class="reference external" href="https://altgo.us">the website for our support group</a>.</li>
+<li>I'm a big fan of static websites with no backends, and very little
+Javascript. I think most content on the web is served just fine by static
+text on a page, laid out with some simple CSS.</li>
+</ul>
+</li>
+<li>I'm also a fan of <a class="reference external" href="{filename}poetry.rst">poetry for Python dependency management</a>! Luckily, in the intervening time since I wrote that
+blogpost the wider Python ecosystem really seemed to adopt poetry quite
+heavily.</li>
+</ul>
+</div>
+<div class="section" id="home-services">
+<h2>Home Services</h2>
+<p>I don't like cloud-based and subscription-based online services. Where those
+things can be avoided, I will do so. To that end I host a lot of services just
+at my house on a server, which itself is just an old repurposed desktop
+computer.</p>
+<p>The files configuring most of my services can be found in my <a class="reference external" href="https://github.com/JennToo/home-services">home-services
+repository</a></p>
+<ul class="simple">
+<li>I use <strong>Jellyfin</strong> for hosting music and video content that I rip from disks
+(physical-media4life!). It has an interface very similar to video streaming
+services.<ul>
+<li>For mobile access to music, I use <strong>Finamp</strong> to connect back to Jellyfin.
+Its interface works very well on a phone, and looks more like a standard
+music streaming system.</li>
+</ul>
+</li>
+<li>For basic home automation I use <strong>Home Assistant</strong>. I don't have many IoT
+devices, and to the capacity that I can I try and keep all of their network
+traffic within my own network. I have a few smart switches that I use to
+control fans and 3d printers, and that's about it. Home Assistant works great
+for that. There's a lot of fancy things that it can do too that I've never
+really explored. Maybe someday!</li>
+<li><strong>Dokuwiki</strong> is a very simple wiki system where I keep my notes. It's a
+little janky, but it works well enough.</li>
+<li>I follow RSS feeds using <strong>FreshRSS</strong>. It works well enough. Not fancy at
+all, just gets the job done.<ul>
+<li>I think when Google killed off Google Reader that's when my disdain for
+cloud hosted services really began 😡</li>
+</ul>
+</li>
+<li><strong>nginx</strong> combined with some DNS records makes it easy to access all the
+internal services by name. Instead of trying to remember port numbers for
+everything.</li>
+<li>All of the services I mentioned above are launched with <strong>Docker</strong>. Because
+nobody has time to be trying to figure out how to install all the crazy
+dependencies each of these services have 😂</li>
+<li>For storage, I have a triplet of hard drives configured with <strong>ZFS</strong>. I like
+ZFS a lot! In particular I like that it does frequent validation of the
+stored data. It also makes backups to an external drive very easy.</li>
+<li>I don't trust most of these services being exposed directly to the Internet,
+so when I need to access things remotely I use <strong>Wireguard</strong> for VPN. It
+works well once you have it setup. It's way easier to setup than OpenVPN.</li>
+</ul>
+<p><em>The Cloud is just someone else's computer.</em></p>
 </div>
 
 </div>
